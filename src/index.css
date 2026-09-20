@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Jura', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Jura', monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --card: #ffffff;
+  --card-foreground: #0a0a0a;
+  --primary: #171717;
+  --primary-foreground: #fafafa;
+  --secondary: #f5f5f5;
+  --secondary-foreground: #171717;
+  --muted: #f5f5f5;
+  --muted-foreground: #737373;
+  --accent: #f5f5f5;
+  --accent-foreground: #171717;
+  --border: #e5e5e5;
+  --ring: #a1a1a1;
+}
+
+.dark {
+  --background: #121212;
+  --foreground: #fafafa;
+  --card: #171717;
+  --card-foreground: #fafafa;
+  --primary: #e5e5e5;
+  --primary-foreground: #171717;
+  --secondary: #262626;
+  --secondary-foreground: #fafafa;
+  --muted: #262626;
+  --muted-foreground: #a1a1a1;
+  --accent: #262626;
+  --accent-foreground: #fafafa;
+  --border: rgba(255, 255, 255, 0.1);
+  --ring: #737373;
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Jura', system-ui, -apple-system, sans-serif;
+}
+
+/* Floating Dock Glassmorphism */
+.dock-pill {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.dark .dock-pill {
+  background-color: rgba(15, 15, 15, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
+.dock-btn {
+  background-color: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: #525252;
+}
+
+.dock-btn:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+  color: #0a0a0a;
+}
+
+.dark .dock-btn {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #a3a3a3;
+}
+
+.dark .dock-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.dock-sep {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.dark .dock-sep {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Custom animations */
+@keyframes blurFadeIn {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+.animate-blur-fade {
+  animation: blurFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Smooth accordion transition */
+.accordion-content {
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
