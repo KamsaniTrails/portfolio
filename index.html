@@ -1,19 +1,19 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio | Software Engineer</title>
-    <meta name="description" content="Software engineer portfolio specializing in full-stack web development, cloud deployment, and AI-driven automation." />
-    <!-- Google Fonts: Jura -->
+    <title>K Mohana Sree | Full Stack AI Engineer</title>
+    <meta name="description" content="Portfolio of K Mohana Sree — Computer Science undergraduate and Full Stack AI Engineer specializing in RAG systems, LangGraph Agentic AI, and React/Node full-stack architectures." />
+    <meta name="keywords" content="K Mohana Sree, AI Engineer, Full Stack Developer, RAG, LangGraph, React, Node.js, RGUKT Srikakulam, MERN" />
+    <!-- Google Fonts: Inter & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <script>
-      // Avoid theme flashing - defaults to light mode
       try {
-        const theme = localStorage.getItem('theme') || 'light';
+        const theme = localStorage.getItem('theme') || 'dark';
         if (theme === 'dark') {
           document.documentElement.classList.add('dark');
         } else {
@@ -22,7 +22,7 @@
       } catch (e) {}
     </script>
   </head>
-  <body class="min-h-screen bg-background text-foreground font-sans antialiased selection:bg-neutral-800 selection:text-white dark:selection:bg-neutral-200 dark:selection:text-black">
+  <body class="min-h-screen bg-background text-foreground font-sans antialiased selection:bg-blue-600 selection:text-white">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

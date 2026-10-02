@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 const ThemeContext = createContext({
-  theme: 'light',
+  theme: 'dark',
   toggleTheme: () => {},
 });
 
@@ -10,9 +10,9 @@ export const ThemeProvider = ({ children }) => {
     try {
       const stored = localStorage.getItem('theme');
       if (stored) return stored;
-      return 'light';
+      return 'dark';
     } catch {
-      return 'light';
+      return 'dark';
     }
   });
 

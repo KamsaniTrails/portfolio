@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Home, Notebook, Sun, Moon } from 'lucide-react';
+import { Home, Notebook, Sun, Moon, FileText, Mail } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 const GithubIcon = ({ className = "size-4" }) => (
@@ -14,13 +14,7 @@ const LinkedinIcon = ({ className = "size-4" }) => (
   </svg>
 );
 
-const XIcon = ({ className = "size-3.5" }) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
-  </svg>
-);
-
-export const Dock = ({ currentTab, setCurrentTab, socials }) => {
+export const Dock = ({ currentTab, setCurrentTab, socials, onOpenResume }) => {
   const { theme, toggleTheme } = useTheme();
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const isDark = theme === 'dark';
@@ -37,11 +31,18 @@ export const Dock = ({ currentTab, setCurrentTab, socials }) => {
       icon: <Home className="size-4 stroke-[1.75]" />,
     },
     {
+      id: 'resume',
+      label: 'Resume PDF',
+      type: 'action',
+      onClick: onOpenResume,
+      icon: <FileText className="size-4 stroke-[1.75] text-blue-500" />,
+    },
+    {
       type: 'divider',
     },
     {
       id: 'blog',
-      label: 'Blog',
+      label: 'Articles',
       type: 'action',
       onClick: () => {
         setCurrentTab('blog');
@@ -64,18 +65,18 @@ export const Dock = ({ currentTab, setCurrentTab, socials }) => {
       icon: <LinkedinIcon className="size-3.5" />,
     },
     {
-      id: 'x',
-      label: 'X',
+      id: 'email',
+      label: 'Email',
       type: 'link',
-      href: socials.x,
-      icon: <XIcon className="size-3" />,
+      href: socials.email,
+      icon: <Mail className="size-3.5 stroke-[1.75]" />,
     },
     {
       type: 'divider',
     },
     {
       id: 'theme',
-      label: 'Theme',
+      label: isDark ? 'Light Mode' : 'Dark Mode',
       type: 'action',
       onClick: toggleTheme,
       icon: isDark ? <Moon className="size-4 stroke-[1.75]" /> : <Sun className="size-4 stroke-[1.75]" />,
@@ -85,9 +86,9 @@ export const Dock = ({ currentTab, setCurrentTab, socials }) => {
   return (
     <div className="pointer-events-none fixed inset-x-0 bottom-4 z-30">
       <div
-        className="dock-pill pointer-events-auto relative h-12 p-1.5 w-fit mx-auto flex items-center gap-1.5 rounded-full transition-colors duration-200"
+        className="dock-pill pointer-events-auto relative h-12 p-1.5 w-fit mx-auto flex items-center gap-1 sm:gap-1.5 rounded-full transition-colors duration-200"
         style={{
-          backgroundColor: isDark ? 'rgba(15, 15, 15, 0.85)' : 'rgba(255, 255, 255, 0.82)',
+          backgroundColor: isDark ? 'rgba(15, 15, 15, 0.88)' : 'rgba(255, 255, 255, 0.85)',
           borderColor: isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.08)',
           boxShadow: isDark
             ? '0 8px 32px 0 rgba(0, 0, 0, 0.5)'

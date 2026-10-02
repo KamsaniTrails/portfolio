@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Globe, ArrowUpRight } from 'lucide-react';
+import { Globe, ArrowUpRight, ChevronDown, ChevronUp, Layers, Sparkles, CheckCircle2 } from 'lucide-react';
 
 const GithubIcon = ({ className = "size-3" }) => (
   <svg
@@ -12,11 +12,11 @@ const GithubIcon = ({ className = "size-3" }) => (
 );
 
 export const Projects = ({ projects }) => {
-  const [showMore, setShowMore] = useState(false);
+  const [expandedProjectId, setExpandedProjectId] = useState(null);
 
-  const displayedProjects = showMore
-    ? projects
-    : projects.filter((p) => !p.extra);
+  const toggleDetails = (id) => {
+    setExpandedProjectId((prev) => (prev === id ? null : id));
+  };
 
   return (
     <div className="flex min-h-0 flex-col gap-y-8">
@@ -26,116 +26,145 @@ export const Projects = ({ projects }) => {
           <div className="flex-1 h-px bg-gradient-to-r from-transparent from-5% via-border via-95% to-transparent" />
           <div className="border bg-primary z-10 rounded-xl px-4 py-1 shadow-sm">
             <span className="text-background text-sm font-medium">
-              My Projects
+              Featured Work
             </span>
           </div>
           <div className="flex-1 h-px bg-gradient-to-l from-transparent from-5% via-border via-95% to-transparent" />
         </div>
-        <div className="flex flex-col gap-y-3 items-center justify-center text-center">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-foreground">
-            Check out my latest work
+        <div className="flex flex-col gap-y-2 items-center justify-center text-center">
+          <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl lg:text-4xl text-foreground">
+            AI &amp; Full Stack Engineering Projects
           </h2>
-          <p className="text-muted-foreground text-sm md:text-base max-w-lg text-balance leading-relaxed">
-            I've worked on a variety of projects, from simple websites to complex web applications. Here are a few of my favorites.
+          <p className="text-muted-foreground text-xs sm:text-sm max-w-lg text-balance leading-relaxed">
+            Production-style systems engineered with RAG, LangGraph Agentic AI, WebRTC streaming, and MERN architectures.
           </p>
         </div>
       </div>
 
       {/* Projects Grid */}
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto w-full auto-rows-fr">
-        {displayedProjects.map((project) => (
-          <div
-            key={project.id}
-            className="flex flex-col h-full border border-border rounded-xl overflow-hidden hover:ring-2 hover:ring-muted transition-all duration-200 bg-card group shadow-sm"
-          >
-            {/* Thumbnail Banner with frosted glass buttons */}
-            <div className="relative shrink-0 overflow-hidden">
-              <a
-                href={project.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block overflow-hidden"
-              >
+      <div className="grid grid-cols-1 gap-5 max-w-[800px] mx-auto w-full">
+        {projects.map((project) => {
+          const isExpanded = expandedProjectId === project.id;
+          return (
+            <div
+              key={project.id}
+              className="flex flex-col border border-border rounded-2xl overflow-hidden hover:border-foreground/30 transition-all duration-200 bg-card group shadow-sm"
+            >
+              {/* Thumbnail Banner with badges */}
+              <div className="relative shrink-0 overflow-hidden bg-neutral-950 aspect-video max-h-64 sm:max-h-72">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-300 opacity-90 group-hover:opacity-100"
                 />
-              </a>
-              <div className="absolute bottom-2 right-2 flex flex-wrap gap-2 z-10">
-                {project.website && (
-                  <a
-                    href={project.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded-md px-2.5 py-0.5 flex items-center gap-1.5 text-xs font-medium bg-black/50 dark:bg-black/60 text-white backdrop-blur-md backdrop-saturate-150 border border-white/20 dark:border-white/15 shadow-sm transition-all duration-200 hover:bg-black/75 hover:border-white/40 hover:scale-105 active:scale-95"
-                  >
-                    <Globe className="size-3" />
-                    <span>Website</span>
-                  </a>
-                )}
-                {project.source && (
-                  <a
-                    href={project.source}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded-md px-2.5 py-0.5 flex items-center gap-1.5 text-xs font-medium bg-black/50 dark:bg-black/60 text-white backdrop-blur-md backdrop-saturate-150 border border-white/20 dark:border-white/15 shadow-sm transition-all duration-200 hover:bg-black/75 hover:border-white/40 hover:scale-105 active:scale-95"
-                  >
-                    <GithubIcon className="size-3" />
-                    <span>Source</span>
-                  </a>
-                )}
-              </div>
-            </div>
 
-            {/* Content info */}
-            <div className="p-6 flex flex-col gap-3 flex-1">
-              <div className="flex items-start justify-between gap-2">
-                <div className="flex flex-col gap-1">
-                  <h3 className="font-semibold text-foreground text-sm md:text-base tracking-tight">
-                    {project.title}
-                  </h3>
-                </div>
-                <a
-                  href={project.website || project.source}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                  aria-label={`Open ${project.title}`}
-                >
-                  <ArrowUpRight className="h-4 w-4" />
-                </a>
-              </div>
-              <p className="text-xs leading-relaxed text-muted-foreground flex-1 text-pretty font-sans">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-1 mt-auto pt-2">
-                {project.tags.map((tag, i) => (
-                  <span
-                    key={i}
-                    className="inline-flex items-center rounded-md px-2 py-0.5 text-[11px] font-medium border border-border text-foreground bg-background h-6 w-fit"
-                  >
-                    {tag}
+                {/* Top Badge: Category */}
+                <div className="absolute top-3 left-3 z-10">
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-black/70 text-white backdrop-blur-md border border-white/15 shadow-sm">
+                    <Sparkles className="size-3 text-cyan-400" />
+                    {project.category}
                   </span>
-                ))}
+                </div>
+
+                {/* Top Right: Period */}
+                <div className="absolute top-3 right-3 z-10">
+                  <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-mono font-medium bg-black/70 text-neutral-300 backdrop-blur-md border border-white/15 shadow-sm">
+                    {project.period}
+                  </span>
+                </div>
+
+                {/* Bottom Action Buttons */}
+                <div className="absolute bottom-3 right-3 flex flex-wrap gap-2 z-10">
+                  {project.source && (
+                    <a
+                      href={project.source}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-lg px-3 py-1 flex items-center gap-1.5 text-xs font-medium bg-black/75 text-white backdrop-blur-md border border-white/20 shadow-sm transition-all duration-200 hover:bg-black/90 active:scale-95"
+                    >
+                      <GithubIcon className="size-3" />
+                      <span>GitHub</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+
+              {/* Content info */}
+              <div className="p-5 sm:p-6 flex flex-col gap-3 flex-1">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <h3 className="font-bold text-foreground text-base sm:text-lg tracking-tight">
+                      {project.title}
+                    </h3>
+                    {project.tagline && (
+                      <p className="text-xs text-primary font-medium mt-0.5">
+                        {project.tagline}
+                      </p>
+                    )}
+                  </div>
+                  <a
+                    href={project.source || project.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-1 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors shrink-0"
+                    aria-label={`View ${project.title}`}
+                  >
+                    <ArrowUpRight className="size-4" />
+                  </a>
+                </div>
+
+                <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground font-sans">
+                  {project.description}
+                </p>
+
+                {/* Tech Tags */}
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {project.tags.map((tag, i) => (
+                    <span
+                      key={i}
+                      className="inline-flex items-center rounded-md px-2 py-0.5 text-[11px] font-medium border border-border text-foreground bg-muted/50 h-5"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Expandable Architecture & Highlights */}
+                {project.bulletPoints && project.bulletPoints.length > 0 && (
+                  <div className="mt-2 pt-2 border-t border-border/50">
+                    <button
+                      type="button"
+                      onClick={() => toggleDetails(project.id)}
+                      className="flex items-center justify-between w-full py-1 text-xs font-semibold text-foreground hover:text-primary transition-colors cursor-pointer group"
+                    >
+                      <span className="flex items-center gap-1.5">
+                        <Layers className="size-3.5 text-muted-foreground group-hover:text-primary" />
+                        {isExpanded ? 'Hide Architecture & Contributions' : 'View Architecture & Implementation Highlights'}
+                      </span>
+                      {isExpanded ? (
+                        <ChevronUp className="size-3.5 text-muted-foreground" />
+                      ) : (
+                        <ChevronDown className="size-3.5 text-muted-foreground" />
+                      )}
+                    </button>
+
+                    {isExpanded && (
+                      <div className="mt-3 space-y-2 pl-1 animate-in fade-in slide-in-from-top-1 duration-200">
+                        {project.bulletPoints.map((point, pIdx) => (
+                          <div key={pIdx} className="flex items-start gap-2 text-xs text-muted-foreground leading-relaxed">
+                            <CheckCircle2 className="size-3.5 text-emerald-500 mt-0.5 shrink-0" />
+                            <span>{point}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
-
-      {/* Show More Button */}
-      {projects.some((p) => p.extra) && (
-        <div className="flex items-center w-full justify-center pt-2">
-          <button
-            type="button"
-            onClick={() => setShowMore(!showMore)}
-            className="border bg-primary text-background hover:opacity-90 active:scale-95 transition-all duration-200 z-10 rounded-xl px-4 py-1 text-sm font-medium cursor-pointer shadow-sm"
-          >
-            {showMore ? 'Show Less' : 'Show More'}
-          </button>
-        </div>
-      )}
     </div>
   );
 };
