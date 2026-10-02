@@ -1,9 +1,11 @@
+const base = import.meta.env.BASE_URL || '/';
+
 export const portfolioData = {
   personal: {
     name: "K Mohana Sree",
     initials: "MS",
-    avatar: "/mohana.jpg",
-    resumePdf: "/K_MohanaSree_Resume.pdf",
+    avatar: `${base}mohana.jpg`,
+    resumePdf: `${base}K_MohanaSree_Resume.pdf`,
     role: "Full Stack AI Engineer & Computer Science Undergraduate",
     tagline: "Building production-ready AI systems with RAG, Agentic AI, LangGraph multi-agent workflows, and resilient MERN full-stack architectures.",
     about: "I'm a Computer Science undergraduate and Full Stack AI Engineer building production-ready AI systems for Healthcare, Education, and Warehouse Intelligence. Skilled in RAG pipelines, Agentic AI, multi-agent LangGraph workflows, and secure React/Node full-stack applications. I possess strong core fundamentals in Java, Python, JavaScript, DSA (500+ problems solved across LeetCode & GeeksforGeeks), and DBMS, backed by AI-assisted development workflows and high end-to-end ownership across the SDLC. CGPA: 8.85/10.",
@@ -49,7 +51,7 @@ export const portfolioData = {
       company: "Pratinik Infotech Pvt Ltd",
       role: "Full Stack AI Engineer Intern",
       period: "May 2025 – Jul 2025",
-      logo: "/pratinik.svg",
+      logo: `${base}pratinik.svg`,
       location: "India (Hybrid)",
       description: "Developed full-stack MERN applications using React.js, Node.js, Express.js, and MongoDB; built and integrated REST APIs, optimizing MongoDB schemas for efficient, scalable data management. Independently owned features end-to-end in a product engineering team — from design through debugging, API testing, and deployment — demonstrating initiative and high ownership in a real product environment.",
       highlights: [
@@ -65,7 +67,7 @@ export const portfolioData = {
       degree: "B.Tech, Computer Science and Engineering",
       period: "2023 – 2027",
       score: "CGPA: 8.85 / 10",
-      logo: "/rgukt.svg",
+      logo: `${base}rgukt.svg`,
       link: "https://www.rguktsklm.ac.in",
       details: "Focus on Data Structures & Algorithms, Object-Oriented Programming, DBMS, and Operating Systems."
     },
@@ -74,7 +76,7 @@ export const portfolioData = {
       degree: "Pre-University Course (PUC)",
       period: "2021 – 2023",
       score: "GPA: 9.30 / 10",
-      logo: "/rgukt.svg",
+      logo: `${base}rgukt.svg`,
       link: "https://www.rguktsklm.ac.in",
       details: "Mathematics, Physics, and Chemistry integrated curriculum with top academic percentile honors."
     }
@@ -187,7 +189,7 @@ export const portfolioData = {
         "Built a React.js chat UI with streaming responses, citation highlighting, and conversation history persisted in MongoDB.",
         "Informally evaluated retrieval accuracy and response groundedness across test queries to tune chunking size and retrieval parameters."
       ],
-      image: "/project_rag.jpg",
+      image: `${base}project_rag.jpg`,
       source: "https://github.com/KamsaniTrails/rag_project",
       tags: ["LangChain", "Python", "Node.js", "React.js", "OpenAI API", "Pinecone", "MongoDB"]
     },
@@ -205,7 +207,7 @@ export const portfolioData = {
         "Integrated FAISS for local vector retrieval and OpenAI function calling for structured tool invocation within the agent loop.",
         "Improved accuracy on multi-hop queries over a single-chain RAG baseline; built a React.js view to trace agent state transitions and tool calls."
       ],
-      image: "/project_langgraph.jpg",
+      image: `${base}project_langgraph.jpg`,
       source: "https://github.com/KamsaniTrails/langchain",
       tags: ["LangGraph", "LangChain", "Python", "Node.js", "OpenAI API", "FAISS", "React.js"]
     },
@@ -223,7 +225,7 @@ export const portfolioData = {
         "Developed 10+ reusable React components with speech recognition for real-time answer transcription.",
         "Built an OpenAI-based evaluation pipeline that scores responses and generates personalized feedback."
       ],
-      image: "/project_interview.jpg",
+      image: `${base}project_interview.jpg`,
       source: "https://github.com/KamsaniTrails/ai-mockInterview",
       tags: ["React.js", "Node.js", "Express.js", "MongoDB", "OpenAI API", "Web Speech"]
     },
@@ -241,7 +243,7 @@ export const portfolioData = {
         "Built a responsive React.js UI for call controls, participant grid, and connection status indicators.",
         "Handled peer disconnect/reconnect edge cases to improve call stability and reduce reconnection latency."
       ],
-      image: "/project_video_call.jpg",
+      image: `${base}project_video_call.jpg`,
       source: null,
       tags: ["React.js", "Node.js", "Express.js", "WebRTC", "Socket.io"]
     }
