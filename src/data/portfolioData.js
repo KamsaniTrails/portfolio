@@ -16,7 +16,7 @@ export const portfolioData = {
     calLink: "mailto:mohanasree9441@gmail.com",
   },
   socials: {
-    github: "https://github.com/",
+    github: "https://github.com/KamsaniTrails",
     linkedin: "https://linkedin.com/in/",
     email: "mailto:mohanasree9441@gmail.com",
     phone: "tel:+919441936911",
@@ -188,7 +188,7 @@ export const portfolioData = {
         "Informally evaluated retrieval accuracy and response groundedness across test queries to tune chunking size and retrieval parameters."
       ],
       image: "/project_rag.jpg",
-      source: "https://github.com/mohana-sree/rag-document-qa",
+      source: "https://github.com/KamsaniTrails/rag_project",
       tags: ["LangChain", "Python", "Node.js", "React.js", "OpenAI API", "Pinecone", "MongoDB"]
     },
     {
@@ -206,7 +206,7 @@ export const portfolioData = {
         "Improved accuracy on multi-hop queries over a single-chain RAG baseline; built a React.js view to trace agent state transitions and tool calls."
       ],
       image: "/project_langgraph.jpg",
-      source: "https://github.com/mohana-sree/langgraph-research-assistant",
+      source: "https://github.com/KamsaniTrails/langchain",
       tags: ["LangGraph", "LangChain", "Python", "Node.js", "OpenAI API", "FAISS", "React.js"]
     },
     {
@@ -224,7 +224,7 @@ export const portfolioData = {
         "Built an OpenAI-based evaluation pipeline that scores responses and generates personalized feedback."
       ],
       image: "/project_interview.jpg",
-      source: "https://github.com/mohana-sree/ai-mock-interview-platform",
+      source: "https://github.com/KamsaniTrails/ai-mockInterview",
       tags: ["React.js", "Node.js", "Express.js", "MongoDB", "OpenAI API", "Web Speech"]
     },
     {
